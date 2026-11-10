@@ -1,0 +1,50 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "luau",
+      "camelcase": "Luau",
+      "title": "Luau",
+      "scope": "source.luau",
+      "file-types": [
+        "luau"
+      ],
+      "injection-regex": "^luau$",
+      "class-name": "TreeSitterLuau"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Luau is a small, fast, and embeddable programming language based on Lua with a gradual type system.",
+    "authors": [
+		{
+			"name": "Munif Tanjim",
+			"email": "hello@muniftanjim.dev",
+			"url": "https://muniftanjim.dev"
+		},
+		{
+			"name": "Amaan Qureshi",
+			"email": "amaanq12@gmail.com"
+		},
+		{
+			"name": "karl-police",
+			"url": ""
+		}
+    ],
+    "links": {
+      "repository": "",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "java": false,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
