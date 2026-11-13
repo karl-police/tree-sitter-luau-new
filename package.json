@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "build": "npx tree-sitter generate && npx tree-sitter build --wasm",
+    "playground": "npx tree-sitter playground",
+    "highlights": "npx tree-sitter highlight test_files/test.luau --html > out.html"
+  },
   "devDependencies": {
     "tree-sitter-cli": "^0.27.2"
   }

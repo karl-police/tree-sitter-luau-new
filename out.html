@@ -104,9 +104,9 @@
 <span class='keyword'>local</span> <span class='type'>foo</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>unknown</span>
 <span class='keyword'>local</span> <span class='type'>foo</span><span class='punctuation delimiter'>:</span> <span class='type'>customType</span>
 <span class='keyword'>local</span> <span class='type'>foo</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>unknown</span> <span class='operator'>|</span> <span class='type builtin'>never</span> <span class='operator'>&amp;</span> <span class='type builtin'>string</span>
-<span class='keyword'>local</span> <span class='type'>foo</span> <span class='operator'>=</span> <span class='number'>0</span> <span class='punctuation delimiter'>::</span> <span class='type builtin'>number</span>
-<span class='keyword'>local</span> <span class='type'>foo</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>number</span> <span class='operator'>=</span> <span class='number'>0</span> <span class='punctuation delimiter'>::</span> <span class='type builtin'>number</span>
-<span class='keyword'>local</span> <span class='type'>foo</span> <span class='operator'>=</span> <span class='punctuation bracket'>(</span><span class='number'>0</span> <span class='punctuation delimiter'>::</span> <span class='type builtin'>number</span><span class='punctuation bracket'>)</span>
+<span class='keyword'>local</span> <span class='type'>foo</span> <span class='operator'>=</span> <span class='number'>0</span> <span class='operator'>::</span> <span class='type builtin'>number</span>
+<span class='keyword'>local</span> <span class='type'>foo</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>number</span> <span class='operator'>=</span> <span class='number'>0</span> <span class='operator'>::</span> <span class='type builtin'>number</span>
+<span class='keyword'>local</span> <span class='type'>foo</span> <span class='operator'>=</span> <span class='punctuation bracket'>(</span><span class='number'>0</span> <span class='operator'>::</span> <span class='type builtin'>number</span><span class='punctuation bracket'>)</span>
 <span class='keyword'>local</span> <span class='type'>foo</span> <span class='operator'>=</span> <span class='keyword'>if</span> true <span class='keyword'>then</span> <span class='number'>0</span> <span class='keyword'>else</span> <span class='number'>1</span>
 <span class='keyword'>const</span> <span class='type'>foo</span> <span class='operator'>=</span> <span class='string'>&quot;&quot;</span>
 
@@ -114,24 +114,41 @@
 <span class='function'>function</span> <span class='function'>func</span><span class='punctuation bracket'>(</span><span class='variable parameter'>p1</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>number</span><span class='punctuation delimiter'>,</span> <span class='variable builtin'><span class='variable builtin'>...</span></span><span class='punctuation bracket'>)</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>string</span> <span class='function'>end</span>
 <span class='function'>function</span> <span class='function'>func</span><span class='punctuation bracket'>(</span><span class='variable parameter'>p1</span><span class='punctuation delimiter'>:</span> <span class='type'>customType</span><span class='punctuation delimiter'>,</span> <span class='variable builtin'><span class='variable builtin'>...</span></span><span class='punctuation bracket'>)</span> <span class='function'>end</span>
 <span class='function'>function</span> <span class='function'>func</span><span class='punctuation bracket'>&lt;</span><span class='type'>T</span><span class='punctuation delimiter'>,</span><span class='type'>V</span><span class='punctuation bracket'>&gt;</span><span class='punctuation bracket'>(</span><span class='variable parameter'>p1</span><span class='punctuation delimiter'>:</span> <span class='type'>T</span><span class='punctuation delimiter'>,</span> <span class='variable parameter'>p2</span><span class='punctuation delimiter'>:</span> <span class='type'>V</span><span class='punctuation bracket'>)</span> <span class='function'>end</span>
-<span class='function'>function</span> <span class='function'>func</span><span class='punctuation bracket'>&lt;</span><span class='punctuation bracket'>&lt;</span><span class='type'>T</span><span class='punctuation bracket'>&gt;</span><span class='punctuation bracket'>&gt;</span><span class='punctuation bracket'>(</span><span class='variable parameter'>p1</span><span class='punctuation delimiter'>:</span> <span class='type'>T</span><span class='punctuation bracket'>)</span> <span class='function'>end</span>
 <span class='keyword'>const</span> <span class='function'>function</span> <span class='function'>func</span><span class='punctuation bracket'>(</span><span class='punctuation bracket'>)</span> <span class='function'>end</span>
 
-<span class='function'>function</span> <span class='function'>func</span><span class='punctuation bracket'>(</span><span class='variable parameter'>self</span><span class='punctuation bracket'>)</span> <span class='function'>end</span>
+<span class='attribute'>@</span><span class='attribute'>native</span>
+<span class='function'>function</span> <span class='function'>func</span><span class='punctuation bracket'>(</span><span class='punctuation bracket'>)</span> <span class='function'>end</span>
+
+<span class='function'>function</span> <span class='function'>func</span><span class='punctuation bracket'>(</span><span class='keyword'>self</span><span class='punctuation bracket'>)</span> <span class='function'>end</span>
+
+<span class='function'>func</span><span class='punctuation bracket'>(</span><span class='punctuation bracket'>)</span>
+<span class='comment'>--func&lt;&lt;T&gt;&gt;(foo)</span>
+<span class='module'>string</span><span class='punctuation delimiter'>.</span>match<span class='punctuation bracket'>(</span><span class='string'>&quot;123&quot;</span><span class='punctuation delimiter'>,</span> <span class='string'>&quot;<span class='string'>%d+</span>&quot;</span><span class='punctuation bracket'>)</span>
 
 
 <span class='keyword'>type</span> <span class='type'>Foo</span> <span class='operator'>=</span> <span class='string'>&quot;Bar&quot;</span>
 <span class='keyword'>type</span> <span class='type'>Foo</span> <span class='operator'>=</span> <span class='type'>Bar</span>
 <span class='keyword'>type</span> <span class='type'>Foo</span> <span class='operator'>=</span> <span class='type builtin'>unknown</span>
-<span class='keyword'>type</span> <span class='type'><span class='type'>Foo</span><span class='punctuation bracket'>&lt;</span><span class='type'>T</span><span class='punctuation bracket'>&gt;</span></span> <span class='operator'>=</span> <span class='type builtin'>unknown</span>
-<span class='keyword'>type</span> <span class='type'><span class='type'>Foo</span><span class='punctuation bracket'>&lt;</span><span class='type'>T</span><span class='punctuation delimiter'>,</span><span class='type'>V</span><span class='punctuation bracket'>&gt;</span></span> <span class='operator'>=</span> <span class='type builtin'>unknown</span>
-<span class='keyword'>type</span> <span class='type'>Foo</span> <span class='operator'>=</span> <span class='punctuation bracket'>(</span><span class='type'>p1</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>string</span><span class='punctuation bracket'>)</span> <span class='punctuation delimiter'>-&gt;</span> <span class='punctuation bracket'>(</span><span class='punctuation bracket'>)</span>
-<span class='keyword'>type</span> <span class='type'>Foo</span> <span class='operator'>=</span> <span class='punctuation bracket'>(</span><span class='type builtin'>number</span><span class='punctuation delimiter'>,</span> <span class='type'>p2</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>number</span><span class='punctuation delimiter'>,</span> <span class='variable builtin'>...</span><span class='type builtin'>string</span><span class='punctuation bracket'>)</span> <span class='punctuation delimiter'>-&gt;</span> <span class='type builtin'>unknown</span>
+<span class='keyword'>type</span> <span class='type'>Foo</span><span class='punctuation bracket'>&lt;</span><span class='type'>T</span><span class='punctuation bracket'>&gt;</span> <span class='operator'>=</span> <span class='type builtin'>unknown</span>
+<span class='keyword'>type</span> <span class='type'>Foo</span><span class='punctuation bracket'>&lt;</span><span class='type'>T</span><span class='punctuation delimiter'>,</span><span class='type'>V</span><span class='punctuation bracket'>&gt;</span> <span class='operator'>=</span> <span class='type builtin'>unknown</span>
+<span class='keyword'>type</span> <span class='type'>Foo</span> <span class='operator'>=</span> <span class='punctuation bracket'>(</span><span class='variable parameter'>p1</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>string</span><span class='punctuation bracket'>)</span> <span class='punctuation delimiter'>-&gt;</span> <span class='punctuation bracket'>(</span><span class='punctuation bracket'>)</span>
+<span class='keyword'>type</span> <span class='type'>Foo</span> <span class='operator'>=</span> <span class='punctuation bracket'>(</span><span class='type builtin'>number</span><span class='punctuation delimiter'>,</span> <span class='variable parameter'>p2</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>number</span><span class='punctuation delimiter'>,</span> <span class='variable builtin'>...</span><span class='type builtin'>string</span><span class='punctuation bracket'>)</span> <span class='punctuation delimiter'>-&gt;</span> <span class='type builtin'>unknown</span>
+<span class='keyword'>type</span> <span class='type'>Foo_tbl</span> <span class='operator'>=</span> <span class='punctuation bracket'>{</span>
+    <span class='punctuation bracket'>[</span><span class='type'>read</span> <span class='string'>&quot;field1&quot;</span><span class='punctuation bracket'>]</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>string</span>
+<span class='punctuation bracket'>}</span>
 
 
 <span class='keyword'>open</span> <span class='keyword'>class</span> <span class='type'>CTest</span> <span class='keyword'>extends</span> <span class='type'>CBase</span>
+    public <span class='type'>X</span><span class='punctuation delimiter'>:</span> <span class='type builtin'>number</span>
 
-<span class='keyword'>end</span></code></pre>
+    <span class='function'>function</span> <span class='function'>new</span><span class='punctuation bracket'>(</span><span class='punctuation bracket'>)</span>
+
+    <span class='function'>end</span>
+
+    <span class='function'>function</span> <span class='function'>method1</span><span class='punctuation bracket'>(</span><span class='punctuation bracket'>)</span> <span class='function builtin'>print</span><span class='punctuation bracket'>(</span><span class='keyword'>self</span><span class='punctuation bracket'>)</span> <span class='function'>end</span>
+<span class='keyword'>end</span>
+
+class<span class='punctuation delimiter'>.</span><span class='type'>isinstance</span><span class='punctuation bracket'>(</span><span class='punctuation bracket'>)</span></code></pre>
 </div>
 
 </body>

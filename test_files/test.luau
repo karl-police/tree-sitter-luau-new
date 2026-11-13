@@ -75,10 +75,16 @@ function func(p1: number, ...) end
 function func(p1: number, ...): string end
 function func(p1: customType, ...) end
 function func<T,V>(p1: T, p2: V) end
-function func<<T>>(p1: T) end
 const function func() end
 
+@native
+function func() end
+
 function func(self) end
+
+func()
+--func<<T>>(foo)
+string.match("123", "%d+")
 
 
 type Foo = "Bar"
@@ -88,8 +94,19 @@ type Foo<T> = unknown
 type Foo<T,V> = unknown
 type Foo = (p1: string) -> ()
 type Foo = (number, p2: number, ...string) -> unknown
+type Foo_tbl = {
+    [read "field1"]: string
+}
 
 
 open class CTest extends CBase
+    public X: number
 
+    function new()
+
+    end
+
+    function method1() print(self) end
 end
+
+class.isinstance()
