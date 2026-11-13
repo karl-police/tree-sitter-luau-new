@@ -78,6 +78,9 @@ function func(p1: customType, ...) end
 function func<T,V>(p1: T, p2: V) end
 const function func() end
 
+function func(p1: number, ...) return end
+function func() return; end
+
 @native
 function func() end
 
@@ -96,8 +99,10 @@ type Foo<T,V> = unknown
 type Foo = (p1: string) -> ()
 type Foo = (number, p2: number, ...string) -> unknown
 type Foo_tbl = {
-    [read typeof("field1")]: string
+    read [typeof("field1")]: string
 }
+type Foo = { x: number, y: string }
+type Foo = { x: number, y: string, }
 
 
 export --[[open]] class CTest --extends CBase

@@ -428,15 +428,11 @@
     "root": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
-          "type": "last_stat",
-          "named": true
-        },
-        {
-          "type": "statement",
+          "type": "block",
           "named": true
         }
       ]
@@ -907,16 +903,6 @@
         "types": [
           {
             "type": "arguments",
-            "named": true
-          }
-        ]
-      },
-      "generic_args": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "genericTypeList_angle_wrapper",
             "named": true
           }
         ]
