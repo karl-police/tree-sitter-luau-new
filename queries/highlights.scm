@@ -100,9 +100,7 @@
 
 (stat_classDef
   [
-    "open"
     "class"
-    "extends"
     "end"
   ] @keyword)
 
@@ -164,9 +162,6 @@
 (type_definition_stat
   name: (identifier) @type.definition)
 
-; Constants
-;((identifier) @constant
-;  (#lua-match? @constant "^[A-Z][A-Z_0-9]+$"))
 
 ; Builtins
 ((identifier) @constant.builtin
@@ -266,15 +261,6 @@
   "{"
   "}"
 ] @punctuation.bracket
-
-(variable_list
-  attribute:
-    (attribute
-      ([
-        "<"
-        ">"
-      ] @punctuation.bracket
-        (identifier) @attribute)))
 
 
 (genericTypeList_angle_wrapper

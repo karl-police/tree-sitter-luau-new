@@ -70,6 +70,7 @@ local foo: number = 0 :: number
 local foo = (0 :: number)
 local foo = if true then 0 else 1
 const foo = ""
+local foo, bar
 
 function func(p1: number, ...) end
 function func(p1: number, ...): string end

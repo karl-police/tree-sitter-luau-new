@@ -8,10 +8,6 @@
         "named": true
       },
       {
-        "type": "implicit_variable_declaration",
-        "named": true
-      },
-      {
         "type": "variable_declaration",
         "named": true
       }
@@ -26,16 +22,20 @@
         "named": true
       },
       {
+        "type": "class",
+        "named": false
+      },
+      {
         "type": "dot_index_expression",
         "named": true
       },
       {
-        "type": "global",
-        "named": false
-      },
-      {
         "type": "identifier",
         "named": true
+      },
+      {
+        "type": "public",
+        "named": false
       }
     ]
   },
@@ -229,10 +229,6 @@
         {
           "type": "attribute_list",
           "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
         }
       ]
     }
@@ -290,10 +286,6 @@
             "named": false
           },
           {
-            "type": "&",
-            "named": false
-          },
-          {
             "type": "*",
             "named": false
           },
@@ -322,10 +314,6 @@
             "named": false
           },
           {
-            "type": "<<",
-            "named": false
-          },
-          {
             "type": "<=",
             "named": false
           },
@@ -342,10 +330,6 @@
             "named": false
           },
           {
-            "type": ">>",
-            "named": false
-          },
-          {
             "type": "^",
             "named": false
           },
@@ -355,14 +339,6 @@
           },
           {
             "type": "or",
-            "named": false
-          },
-          {
-            "type": "|",
-            "named": false
-          },
-          {
-            "type": "~",
             "named": false
           },
           {
@@ -455,10 +431,6 @@
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "hash_bang_line",
-          "named": true
-        },
         {
           "type": "last_stat",
           "named": true
@@ -821,10 +793,6 @@
           {
             "type": "expression",
             "named": true
-          },
-          {
-            "type": "global",
-            "named": false
           },
           {
             "type": "identifier",
@@ -1232,22 +1200,6 @@
         "types": [
           {
             "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "implicit_variable_declaration",
-    "named": true,
-    "fields": {
-      "attribute": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "attribute",
             "named": true
           }
         ]
@@ -2289,10 +2241,6 @@
           "named": true
         },
         {
-          "type": "stat_assignment",
-          "named": true
-        },
-        {
           "type": "variable_list",
           "named": true
         }
@@ -2303,16 +2251,6 @@
     "type": "variable_list",
     "named": true,
     "fields": {
-      "attribute": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "attribute",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": true,
         "required": true,
@@ -2333,16 +2271,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "type",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2477,10 +2405,6 @@
     "named": false
   },
   {
-    "type": "<<",
-    "named": false
-  },
-  {
     "type": "<=",
     "named": false
   },
@@ -2498,10 +2422,6 @@
   },
   {
     "type": ">=",
-    "named": false
-  },
-  {
-    "type": ">>",
     "named": false
   },
   {
@@ -2601,10 +2521,6 @@
     "named": false
   },
   {
-    "type": "extends",
-    "named": false
-  },
-  {
     "type": "false",
     "named": false
   },
@@ -2615,14 +2531,6 @@
   {
     "type": "function",
     "named": false
-  },
-  {
-    "type": "global",
-    "named": false
-  },
-  {
-    "type": "hash_bang_line",
-    "named": true
   },
   {
     "type": "identifier",
@@ -2659,10 +2567,6 @@
   {
     "type": "number",
     "named": true
-  },
-  {
-    "type": "open",
-    "named": false
   },
   {
     "type": "or",
@@ -2750,10 +2654,6 @@
   },
   {
     "type": "}",
-    "named": false
-  },
-  {
-    "type": "~",
     "named": false
   },
   {
