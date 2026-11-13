@@ -1041,14 +1041,14 @@ export default grammar({
 
       // TypeList ::= Type [',' TypeList] | '...' Type
       _type_list: ($) =>
-        choice(
+        prec.left(choice(
           seq(
             $.type,
-            optional( repeat(seq(",", $.type)) )
+            optional( repeat(seq(",", $._type_list)) )
           ),
           $.variadic_type_pack, // reduced '...' Type
           //seq("...", $.type),
-        ),
+        )),
       // BoundTypeList ::= [NAME ':'] Type [',' BoundTypeList]
       // | GenericTypePack | VariadicTypePack
       _bound_type_list: ($) =>

@@ -80,6 +80,7 @@ const function func() end
 
 function func(p1: number, ...) return end
 function func() return; end
+function func(): (number, ...string) return 1, "str" end
 
 @native
 function func() end
