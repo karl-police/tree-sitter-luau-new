@@ -64,7 +64,7 @@ end
 
 local foo: unknown
 local foo: customType
-local foo: unknown | never & string
+local foo: (unknown | never) & string
 local foo = 0 :: number
 local foo: number = 0 :: number
 local foo = (0 :: number)
@@ -96,11 +96,11 @@ type Foo<T,V> = unknown
 type Foo = (p1: string) -> ()
 type Foo = (number, p2: number, ...string) -> unknown
 type Foo_tbl = {
-    [read "field1"]: string
+    [read typeof("field1")]: string
 }
 
 
-open class CTest extends CBase
+export --[[open]] class CTest --extends CBase
     public X: number
 
     function new()

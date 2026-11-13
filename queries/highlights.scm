@@ -98,11 +98,19 @@
     "end"
   ] @keyword.function)
 
+
+; Classes
 (stat_classDef
   [
     "class"
     "end"
   ] @keyword)
+
+(class_field
+  [
+    "public"
+  ] @keyword)
+
 
 
 ; Operators
