@@ -834,7 +834,7 @@ export default grammar({
           ),
         class_field: ($) =>
           seq(
-            "public",
+            field("access", "public"),
             binding_func($),
           ),
         class_method: ($) => $.function_declaration,
@@ -1075,6 +1075,15 @@ export default grammar({
           ",",
         ),
 
+        
+      // TypeInstantiation ::= '<' '<' [TypeList] '>' '>'
+      type_instantiation: ($) =>
+        seq(
+          "<", "<",
+          optional($._type_list),
+          ">", ">"
+        ),
+      
 
       // TableType ::= '{' Type '}' | '{' [PropList] '}'
       table_type: ($) =>

@@ -457,6 +457,16 @@
     "type": "class_field",
     "named": true,
     "fields": {
+      "access": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "public",
+            "named": false
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
