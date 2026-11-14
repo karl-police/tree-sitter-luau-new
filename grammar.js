@@ -131,6 +131,7 @@ export default grammar({
     [$._simple_type, $._type_list, $._bound_type_list],
     [$._simple_type, $._bound_type_list],
     [$._named_type],
+    [$.simple_expr, $.function_call],
   ],
 
   rules: {
@@ -315,26 +316,27 @@ export default grammar({
         ),*/
       _parameter_list: $ => choice(list_seq($.parameter, ",")),
 
-      // varargparam ::= ‘...’ [Name]
+      // varargparam ::= '...' [Name]
       _vararg_parameter: ($) =>
         seq($.expr_vararg, optional(field("name", $.identifier))),
 
-      // functioncall ::= prefixexp funcargs | prefixexp ':' NAME funcargs
+      // functioncall ::= prefixexp [TypeInstantiation] funcargs |
+      //    prefixexp ':' NAME [TypeInstantiation] funcargs
       function_call: ($) =>
-        prec(2, seq(
+        seq(
           field("name",
             choice(
               $._prefix_expr,
               $.namecall_index_expression
             )
           ),
-          /*optional(
-            repeat(field("generic_args", $.genericTypeList_angle_wrapper))
-          ),*/
+          optional(
+            $.type_instantiation
+          ),
           field("arguments",
             $.arguments
           )
-        )),
+        ),
 
       // args ::=  '(' [explist] ')' | tableconstructor | LiteralString
       arguments: ($) =>
@@ -1077,12 +1079,14 @@ export default grammar({
 
         
       // TypeInstantiation ::= '<' '<' [TypeList] '>' '>'
-      type_instantiation: ($) =>
-        seq(
+      type_instantiation: ($) => {
+        // them not being as "<<" allows for spaces inbetween, which is wanted
+        return seq(
           "<", "<",
           optional($._type_list),
           ">", ">"
-        ),
+        )
+      },
       
 
       // TableType ::= '{' Type '}' | '{' [PropList] '}'

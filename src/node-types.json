@@ -939,6 +939,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "type_instantiation",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2085,6 +2095,25 @@
       "types": [
         {
           "type": "genericTypeList_angle_wrapper",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_instantiation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "type",
+          "named": true
+        },
+        {
+          "type": "variadic_type_pack",
           "named": true
         }
       ]

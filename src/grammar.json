@@ -635,38 +635,46 @@
       ]
     },
     "function_call": {
-      "type": "PREC",
-      "value": 2,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "name",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_prefix_expr"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "namecall_index_expression"
-                }
-              ]
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "arguments",
-            "content": {
-              "type": "SYMBOL",
-              "name": "arguments"
-            }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_prefix_expr"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "namecall_index_expression"
+              }
+            ]
           }
-        ]
-      }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "type_instantiation"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "arguments",
+          "content": {
+            "type": "SYMBOL",
+            "name": "arguments"
+          }
+        }
+      ]
     },
     "arguments": {
       "type": "CHOICE",
@@ -5144,6 +5152,10 @@
     ],
     [
       "_named_type"
+    ],
+    [
+      "simple_expr",
+      "function_call"
     ]
   ],
   "precedences": [],

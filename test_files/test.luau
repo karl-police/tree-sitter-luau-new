@@ -60,6 +60,9 @@ for k,v in {} do
     if false then continue end
 end
 
+if (math.random() > 0.5) then end
+if (math.random() < 0.5) then end
+
 --
 
 local foo: unknown
@@ -75,7 +78,7 @@ local foo, bar
 function func(p1: number, ...) end
 function func(p1: number, ...): string end
 function func(p1: customType, ...) end
-function func<T,V>(p1: T, p2: V) end
+function func<T, U>(p1: T, p2: U) end
 const function func() end
 
 function func(p1: number, ...) return end
@@ -88,8 +91,13 @@ function func() end
 function func(self) end
 
 func()
---func<<T>>(foo)
 string.match("123", "%d+")
+
+func<<>>(foo)
+func<<string>>(foo)
+func<<string, number>>(foo)
+func<<>>()<<>>()
+local foo = func<<string>>() < 5
 
 
 type Foo = "Bar"
