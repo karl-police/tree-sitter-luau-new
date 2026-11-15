@@ -98,6 +98,9 @@ func<<string>>(foo)
 func<<string, number>>(foo)
 func<<>>()<<>>()
 local foo = func<<string>>() < 5
+local foo = func<<Foo>>
+foo["bar"]<<Foo>>()
+local foo = foo.bar<<Foo>>.bar2
 
 
 type Foo = "Bar"

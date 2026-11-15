@@ -1,1 +1,0 @@
-(type_cast_expr "::" @operator)

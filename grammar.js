@@ -130,8 +130,8 @@ export default grammar({
     [$._type_list, $._bound_type_list],
     [$._simple_type, $._type_list, $._bound_type_list],
     [$._simple_type, $._bound_type_list],
-    [$._named_type],
     [$.simple_expr, $.function_call],
+    [$.simple_expr, $.expr_type_instantiate],
   ],
 
   rules: {
@@ -189,9 +189,44 @@ export default grammar({
           choice(
             $.expr_variable,
             $.function_call,
-            $.parenthesized_expression
+            $.parenthesized_expression,
+            $.expr_type_instantiate,
           )
         ),
+      
+      /**
+       * primaryexp may already consist around namecall_index_expression and etc.
+       */
+      // primaryexp -> prefixexp { '.' NAME | '[' exp ']' | TypeInstantiation
+      //    | ':' NAME [TypeInstantiation] funcargs | funcargs }
+      /*primary_expr: ($) => {
+        return seq(repeat1(
+          choice(
+            $._prefix_expr,
+            $.dot_index_expression, // " '.' NAME " part and so on
+            $.bracket_index_expression,
+            $.expr_type_instantiate,
+            seq(
+              $.namecall_index_expression,
+              $.type_instantiation,
+              $.arguments
+            ),
+            seq(
+              $._prefix_expr, $.arguments
+            )
+          )
+        ))
+      },*/
+      
+      // Goal is:
+      // prefixexp TypeInstantiation
+      expr_type_instantiate: ($) => {
+        return seq(
+          $._prefix_expr,
+          $.type_instantiation,
+        )
+      },
+
 
       // simpleexp ::= NUMBER | STRING | 'nil' | 'true' | 'false' |
       // '...' | tableconstructor | attributes 'function' funcbody | prefixexp | ifelseexp | stringinterp
@@ -206,6 +241,7 @@ export default grammar({
           $.expr_function_definition, // attributes 'function' funcbody
           $._prefix_expr,
           $.expr_ifConditional,
+          //$._primary_expr,
         )
       },
     },
@@ -236,7 +272,10 @@ export default grammar({
       // var ::= NAME | prefixexp '[' exp ']' | prefixexp '.' NAME
       expr_variable: ($) =>
         choice(
-          $._contextual_keyword, $.identifier, $.bracket_index_expression, $.dot_index_expression
+          $._contextual_keyword,
+          $.identifier,
+          $.bracket_index_expression,
+          $.dot_index_expression
         ),
     },
 
@@ -323,19 +362,16 @@ export default grammar({
       // functioncall ::= prefixexp [TypeInstantiation] funcargs |
       //    prefixexp ':' NAME [TypeInstantiation] funcargs
       function_call: ($) =>
-        seq(
-          field("name",
-            choice(
-              $._prefix_expr,
-              $.namecall_index_expression
-            )
+        choice(
+          seq(
+            field("name", $._prefix_expr), // prefix_expr already handles TypeInstantiation
+            field("arguments", $.arguments),
           ),
-          optional(
-            $.type_instantiation
+          seq(
+            field("name", $.namecall_index_expression),
+            optional($.type_instantiation),
+            field("arguments", $.arguments),
           ),
-          field("arguments",
-            $.arguments
-          )
         ),
 
       // args ::=  '(' [explist] ')' | tableconstructor | LiteralString
@@ -350,12 +386,12 @@ export default grammar({
       expr_function_definition: ($) =>
         seq(optional(field("attributes", $.attributes)), "function", $._function_body),
       
-      genericTypeList_angle_wrapper: ($) => seq("<", $.generic_type_list, ">",),
+      genericTypeList_wrapper: ($) => seq("<", $.generic_type_list, ">",),
 
       // funcbody ::= ['<' GenericTypeList '>'] '(' [parlist] ')' [':' ReturnType] block 'end'
       _function_body: ($) =>
         seq(
-          optional($.genericTypeList_angle_wrapper),
+          optional($.genericTypeList_wrapper),
           "(",
             field("parameters", optional($._parameter_list)),
           ")",
@@ -913,11 +949,11 @@ export default grammar({
       singleton_type: ($) => choice($.string, $.boolean),
 
       // NAME ['.' NAME] [ '<' [TypeParams] '>' ]
-      _named_type: ($) => seq(
+      _named_type: ($) => prec.right(seq(
         $.identifier,
         optional( seq(".", $.identifier) ),
         optional( seq( "<", optional($.type_params), ">" ) ),
-      ),
+      )),
       // 'typeof' '(' exp ')'
       _typeof_type: ($) => seq("typeof", "(", $.expression, ")"),
       
@@ -1103,7 +1139,7 @@ export default grammar({
       // FunctionType ::= ['<' GenericTypeList '>'] '(' [BoundTypeList] ')' '->' ReturnType
       function_type: ($) =>
         prec.right(1, seq(
-          optional($.genericTypeList_angle_wrapper),
+          optional($.genericTypeList_wrapper),
           "(", optional($._bound_type_list), ")",
           "->",
           field("return_type", $._return_type),
