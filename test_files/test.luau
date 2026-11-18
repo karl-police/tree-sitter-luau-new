@@ -111,10 +111,11 @@ type Foo<T,V> = unknown
 type Foo = (p1: string) -> ()
 type Foo = (number, p2: number, ...string) -> unknown
 type Foo_tbl = {
-    read [typeof("field1")]: string
+    read [typeof("field1")]: string,
+    write field2: string
 }
 type Foo = { x: number, y: string }
-type Foo = { x: number, y: string, }
+type Foo = { x: number, y: string, } -- trailing
 
 
 export --[[open]] class CTest --extends CBase

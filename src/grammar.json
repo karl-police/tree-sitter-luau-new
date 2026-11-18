@@ -3640,19 +3640,15 @@
         },
         {
           "type": "STRING",
-          "value": "table"
-        },
-        {
-          "type": "STRING",
-          "value": "userdata"
-        },
-        {
-          "type": "STRING",
           "value": "thread"
         },
         {
           "type": "STRING",
           "value": "buffer"
+        },
+        {
+          "type": "STRING",
+          "value": "vector"
         }
       ]
     },
@@ -4171,17 +4167,21 @@
       ]
     },
     "_type_table_read_write": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "read"
-        },
-        {
-          "type": "STRING",
-          "value": "write"
-        }
-      ]
+      "type": "FIELD",
+      "name": "access",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "read"
+          },
+          {
+            "type": "STRING",
+            "value": "write"
+          }
+        ]
+      }
     },
     "_type_table_indexer": {
       "type": "SEQ",

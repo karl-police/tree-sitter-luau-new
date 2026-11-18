@@ -1960,7 +1960,22 @@
   {
     "type": "table_type",
     "named": true,
-    "fields": {},
+    "fields": {
+      "access": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "read",
+            "named": false
+          },
+          {
+            "type": "write",
+            "named": false
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -2677,10 +2692,6 @@
     "named": false
   },
   {
-    "type": "table",
-    "named": false
-  },
-  {
     "type": "then",
     "named": false
   },
@@ -2709,7 +2720,7 @@
     "named": false
   },
   {
-    "type": "userdata",
+    "type": "vector",
     "named": false
   },
   {

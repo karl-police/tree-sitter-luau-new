@@ -23,3 +23,5 @@ https://tree-sitter.github.io/tree-sitter/creating-parsers/index.html
 ; it will take most valid keyword starting from the end
 ; @validKeyword2 in this case
 ```
+
+Not everything is like this though.
